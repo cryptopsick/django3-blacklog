@@ -1,0 +1,11 @@
+/* Put your custom styles here */
+
+#img-news {
+    width : 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+#dropdown-list{
+    background-color: white !important;
+}

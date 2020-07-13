@@ -1,0 +1,56 @@
+
+<!DOCTYPE html> 
+{% extends "base.html" %}
+{%load static%}
+
+{%block mainpage%} 
+        <section id="content-1-1" class="bg-white content-1-1 content-block min-height-300px">
+            <div class="container text-center">
+                <h1 class="asbestos">Extreme music reviews, for busy people</h1>
+                <div class="col-sm-8 col-sm-offset-2">
+                    <p class="lead">Welcome to my site.<br> These are some metal albums I did enjoy. I tried to rate them with a personal metric system, and I have added some notes on why I think these albums are awesome. I am avoiding long text description, seriously who still read them.</p>
+                </div>
+            </div>
+        </section>
+        <hr/>
+        <section class="content-block team-1 team-1-2">
+            <div class="container">
+                <div class="underlined-title">
+                    <h1>Latest albums i checked</h1>
+                    <hr>
+                </div>
+                <div class="row">
+
+                {% for album in albums%}                
+                    <div class="col-md-3 col-sm-6 team-member-wrap">
+                        <div class="team-member">
+                            <img class="img-responsive" alt="Member Image" src="{{album.image.url}}"></img>
+                            <div class="team-details">
+                                <h4 class="member-name">{{album.band | truncatewords:4}}</h4>
+                                <p class="position">{{album.title | truncatewords:8}}</p>
+                                <p >{{album.notes}}</p>
+                                <p>Score: {{album.score}}/10</p>
+                                <ul class="social social-dark">
+                                    <li>
+                                        <a href="{{album.band.fcbk}}" target="_blank"><i class="fa fa-2x fa-facebook"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="{{album.band.url}}" target="_blank"><i class="fa fa-2x fa-globe"></i></a>
+                                    </li>
+                                </ul>
+                                <!-- /.social -->
+                            </div>
+                        </div>
+                    </div>
+                 {% endfor %}    
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container -->
+        </section>
+<nav>
+  {% include "pagination.html" with page=albums %}
+</nav>
+
+{%endblock%}
+

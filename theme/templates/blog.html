@@ -1,0 +1,38 @@
+<!DOCTYPE html> 
+{% extends "base.html" %}
+{%load static%}
+
+{%block bloglist%} 
+
+
+        <div class="content-block blog-1">
+            <div class="container">
+
+                <div class="underlined-title">
+                    <h1>My Blog</h1>
+                    <hr>
+                    <h6>The latest news & posts</h6>
+                </div>
+      {% for post in posts %}
+                <div class="col-sm-10 col-sm-offset-1">
+                    <div class="post">
+                        <h2><a href="{{ post.get_absolute_url }}" class="asbestos">{{ post.title }}</a></h2>
+                        <img class = "img-responsive" id="img-news" src="{{post.image.url}}"></img>
+                        <p> {{ post.body|truncatewords:100|linebreaks }}</p>
+                        <div class="">
+                            <p class="small text-muted text-uppercase"> {{ post.publish }}</p>
+                            <h3><a href="{{ post.get_absolute_url }}">Read more</a></h3>
+                        </div>
+                    </div>
+                    <hr>
+                </div>    
+      {% endfor %}
+             <!-- /.col-sm-10 -->
+            </div>
+            <!-- /.container -->
+        </div>
+<nav>
+{% include "pagination.html" with page=posts %}
+</nav> 
+        {%endblock%}
+ </html>
